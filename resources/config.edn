@@ -1,0 +1,19 @@
+{:kafka/config     {"application.id"            "simple-iot"
+                    "bootstrap.servers"         "localhost:9092"
+                    "default.key.serde"         "jackdaw.serdes.EdnSerde"
+                    "default.value.serde"       "jackdaw.serdes.EdnSerde"
+                    "cache.max.bytes.buffering" "0"}
+ :client/topics    {:kafka-config    #ig/ref :kafka/config
+                    :topics-metadata {:temperature-living-room   {:topic-name         "temperature-living-room"
+                                                                  :partition-count    1
+                                                                  :replication-factor 1
+                                                                  :topic-config       {}}
+                                      :high-temperature-detected {:topic-name         "high-temperature-detected"
+                                                                  :partition-count    1
+                                                                  :replication-factor 1
+                                                                  :topic-config       {}}}}
+ :streams/topology {:topics #ig/ref :client/topics}
+
+ :app/config       {:kafka-config #ig/ref :kafka/config
+                    :topology     #ig/ref :streams/topology
+                    :topics       #ig/ref :client/topics}}

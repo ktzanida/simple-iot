@@ -1,0 +1,28 @@
+{:paths ["src" "dev" "test" "resources"]
+ :deps
+ {org.clojure/clojure                       {:mvn/version "1.10.1"}
+  org.clojure/tools.namespace               {:mvn/version "0.2.11"}
+  org.clojure/tools.logging                 {:mvn/version "0.4.1"}
+  org.clojure/tools.deps.alpha              {:git/url "https://github.com/clojure/tools.deps.alpha.git"
+                                             :sha     "d492e97259c013ba401c5238842cd3445839d020"}
+  danlentz/clj-uuid                         {:mvn/version "0.1.7"}
+  fundingcircle/jackdaw                     {:mvn/version "0.7.6"}
+  org.apache.kafka/kafka-streams            {:mvn/version "2.1.0"}
+  org.apache.kafka/kafka-streams-test-utils {:mvn/version "2.1.0"}
+  integrant                                 {:mvn/version "0.8.0"}
+  integrant/repl                            {:mvn/version "0.3.2"}}
+
+ :mvn/repos
+ {"central"   {:url "https://repo1.maven.org/maven2/"}
+  "clojars"   {:url "https://repo.clojars.org/"}
+  "confluent" {:url "https://packages.confluent.io/maven/"}}
+
+ :aliases
+ {:dev     {:extra-paths ["test" "dev"]
+            :extra-deps  {org.clojure/tools.namespace {:mvn/version "1.0.0"}
+                          lambdaisland/kaocha         {:mvn/version "1.0.632"}
+                          com.cognitect/transcriptor  {:mvn/version "0.1.5"}}
+            :jvm-opts    ["-XX:-OmitStackTraceInFastThrow"]}
+  :uberjar {:extra-paths ["resources"]
+            :extra-deps  {seancorfield/depstar {:mvn/version "1.1.116"}}
+            :main-opts   ["-m" "hf.depstar.uberjar" "simple-iot.jar"]}}}

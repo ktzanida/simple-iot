@@ -9,11 +9,9 @@
   (fn [builder]
     ;; Read the temperature-living-room topic into a KStream
     (-> (js/kstream builder temperature-living-room)
-
         ;; Filter the KStream for temperatures greater than 30
         (js/filter (fn [[_ measurement]]
                      (<= 30 (:value measurement))))
-        ;; Remove all but the :amount and :user-id fields from the message.
         ;; Note that the function passed to map takes and returns a tuple of [key value].
         (js/map (fn [[k measurement]]
                   [k (select-keys measurement [:value :sensor-id])]))

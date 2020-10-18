@@ -8,6 +8,8 @@
             [integrant.core :as ig])
   (:import [org.apache.kafka.common.serialization Serdes]))
 
+(defn- uuid [] (java.util.UUID/randomUUID))
+
 (defn- add-serde [topic]
   (merge {:key-serde   (jse/serde)
           :value-serde (jse/serde)}

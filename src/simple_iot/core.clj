@@ -2,12 +2,10 @@
   (:gen-class)
   (:require [clojure.spec.alpha :as s]
             [clojure.tools.logging :refer [info]]
-            [simple-iot.topology]
             [jackdaw.admin :as ja]
             [jackdaw.streams :as js]
             [jackdaw.serdes.edn :as jse]
-            [integrant.core :as ig]
-            [simple-iot.system :as system])
+            [integrant.core :as ig])
   (:import [org.apache.kafka.common.serialization Serdes]))
 
 (defn start-app

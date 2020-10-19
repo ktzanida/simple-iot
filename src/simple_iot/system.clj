@@ -1,6 +1,9 @@
 (ns simple-iot.system
   (:require [integrant.core :as ig]
-            [clojure.spec.alpha :as s]))
+            [clojure.spec.alpha :as s]
+            [simple-iot.client]
+            [simple-iot.core]
+            [simple-iot.topology]))
 
 (defonce system (atom nil))
 
